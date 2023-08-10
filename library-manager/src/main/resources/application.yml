@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: library-manager
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 60000
+            read-timeout: 60000
+      circuitbreaker:
+        enabled: true
+        alphanumeric-ids:
+          enabled: true
+      okhttp:
+        enabled: true
+
+eureka:
+  client:
+    enabled: false
+
+resilience4j:
+  circuitbreaker:
+    circuitBreakerAspectOrder: 1
+    configs:
+      default:
+        registerHealthIndicator: true
+  retry:
+    retryAspectOrder: 2
+  timelimiter:
+    configs:
+      default:
+        timeoutDuration: 20s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health, info, circuitbreakers, circuitbreakerevents, retries, retryevents, timelimiters, timelimiterevents, openapi, swagger-ui"
+  health:
+    circuitbreakers:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+
+springdoc:
+  show-actuator: true
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+  logback:
+    rollingpolicy:
+      max-history: 10
+      max-file-size: 10MB
+      total-size-cap: 100MB

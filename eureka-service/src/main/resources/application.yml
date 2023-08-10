@@ -1,0 +1,21 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    region: eu-central-1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health, info"
+
+logging:
+  logback:
+    rollingpolicy:
+      max-history: 10
+      max-file-size: 10MB
+      total-size-cap: 100MB

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: gateway
+
+eureka:
+  client:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health, info, gateway"
+  endpoint:
+    gateway:
+      enabled: true
+
+logging:
+  logback:
+    rollingpolicy:
+      max-history: 10
+      max-file-size: 10MB
+      total-size-cap: 100MB

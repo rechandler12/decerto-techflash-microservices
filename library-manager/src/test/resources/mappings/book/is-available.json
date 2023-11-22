@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/books/1:isAvailable"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Connection": "close"
+    },
+    "jsonBody": true
+  }
+}
